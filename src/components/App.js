@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import './App.css';
+import React, { Component } from "react";
+import "./App.css";
 
 class App extends Component {
   render() {
@@ -10,17 +10,24 @@ class App extends Component {
             className="navbar-brand col-sm-3 col-md-2 mr-0"
             target="_blank"
             rel="noopener noreferrer"
+            style={{ color: "white" }}
           >
             Health Data
           </a>
         </nav>
-        <div className="container-fluid mt-5">
+        <div className="container-fluid mt-5 ml-5">
           <div className="row">
-            <main role="main" className="col-lg-12 d-flex text-center">
-              <div className="content mr-auto ml-auto">
-                
+              <p className="h1">Upload Health Data</p>
               </div>
-            </main>
+              <div className="row">
+              <form>
+                <div className="form-group">
+                <input type="file" className="form-control-file mb-2"/>
+                <input type="submit" className="btn btn-primary"/>
+                </div>
+              </form>
+              {/* <p>Open a PDF file <a target="_blank" href="%PUBLIC_URL%/src/data/sample_health_data.pdf">example</a>.</p> */}
+     
           </div>
         </div>
       </div>
