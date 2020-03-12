@@ -72,13 +72,11 @@ class App extends Component {
             <table className="table">
               <thead>
                 <tr>
-                  {/* <th scope="col">#</th> */}
                   <th scope="col">Your Files</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  {/* <th scope="row">1</th> */}
                   <td>
                     <p>
                       <a
