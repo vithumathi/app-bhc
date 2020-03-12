@@ -1,39 +1,44 @@
 import React, { Component } from "react";
 import "./App.css";
-import ipfs from './ipfs'
+import ipfs from "./ipfs";
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      buffer: null
+      buffer: null,
+      fileHash: ""
     };
   }
 
   captureFile = event => {
     event.preventDefault();
-    console.log("file captured...")
-    // Process file for IPFS..
-    console.log("file captured...")
-    const file = event.target.files[0]
-    const reader = new window.FileReader()
-    reader.readAsArrayBuffer(file)
+    // Process file for IPFS upload
+    console.log("file captured...");
+    const file = event.target.files[0];
+    const reader = new window.FileReader();
+    reader.readAsArrayBuffer(file);
     reader.onloadend = () => {
-      this.setState({ buffer: Buffer(reader.result) })
-    }
-  }
+      this.setState({ buffer: Buffer(reader.result) });
+    };
+  };
 
-  onSubmit = (event) =>{
-    event.preventDefault()
-    console.log("Submit")
+  // Example: "QmP736EiaZcXmPSigDmbDrQVNkqN1ZrbqDSvfAcvt2RZvf"
+  // Example url: https://ipfs.io/ipfs/QmP736EiaZcXmPSigDmbDrQVNkqN1ZrbqDSvfAcvt2RZvf
+  onSubmit = event => {
+    event.preventDefault();
+    console.log("Submit");
     ipfs.add(this.state.buffer, (err, result) => {
-      console.log('ipfs result', result)
-      if(err){
-        console.error(err)
-        return
+      console.log("ipfs result", result);
+      const fileHash = result[0].hash;
+      this.setState({ fileHash: fileHash });
+      console.log("the set hash is ", this.state.fileHash);
+      if (err) {
+        console.error(err);
+        return;
       }
-    })
-  }
+    });
+  };
 
   render() {
     return (
@@ -63,7 +68,28 @@ class App extends Component {
                 <input type="submit" className="btn btn-primary" />
               </div>
             </form>
-            {/* <p>Open a PDF file <a target="_blank" href="%PUBLIC_URL%/src/data/sample_health_data.pdf">example</a>.</p> */}
+            <div className="row"></div>
+            <table className="table">
+              <thead>
+                <tr>
+                  <th scope="col">Your Files</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <p>
+                      <a
+                        target="_blank"
+                        href={`https://ipfs.io/ipfs/${this.state.fileHash}`}
+                      >
+                        File
+                      </a>
+                    </p>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
       </div>
