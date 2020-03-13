@@ -3,6 +3,9 @@ import "./App.css";
 import ipfs from "./ipfs";
 import Web3 from "web3";
 import Patient from "../abis/Patient.json";
+import Navigation from "./Navigation";
+import FileUpload from "./FileUpload";
+import FileList from "./FileList";
 
 class App extends Component {
   async componentWillMount() {
@@ -89,58 +92,16 @@ class App extends Component {
   render() {
     return (
       <div>
-        <nav className="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
-          <a
-            className="navbar-brand col-sm-3 col-md-2 mr-0 text-white"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Health Data
-          </a>
-          <ul className="navbar-nav px-3">
-            <li className="nav-item text-nowrap d-none d-sm-none d-sm-block">
-              <small className="text-white">{this.state.account}</small>
-            </li>
-          </ul>
-        </nav>
+        <Navigation account={this.state.account} />
         <div className="container-fluid mt-5 ml-5">
           <div className="row">
-            <p className="h1">Upload Health Data</p>
+            <FileUpload
+              onSubmit={this.onSubmit}
+              captureFile={this.captureFile}
+            />
           </div>
-          <div className="row">
-            <form onSubmit={this.onSubmit}>
-              <div className="form-group">
-                <input
-                  type="file"
-                  className="form-control-file mb-2"
-                  onChange={this.captureFile}
-                />
-                <input type="submit" className="btn btn-primary" />
-              </div>
-            </form>
-            <div className="row"></div>
-            <table className="table">
-              <thead>
-                <tr>
-                  <th scope="col">Your Files</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>
-                    <p>
-                      <a
-                        target="_blank"
-                        href={`https://ipfs.io/ipfs/${this.state.fileHash}`}
-                      >
-                        File
-                      </a>
-                    </p>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+          <div className="row"></div>
+          <FileList fileHash={this.state.fileHash} />
         </div>
       </div>
     );
