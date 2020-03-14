@@ -85,9 +85,11 @@ class App extends Component {
         .set(fileHash)
         .send({ from: this.state.account })
         .then(r => {
-          this.setState({ fileHash: fileHash });
-          window.location.reload();
+          //this.setState({ fileHash: fileHash });
+          //window.location.reload(false);
+          console.log('then')
         });
+        
     });
   };
 

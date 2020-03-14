@@ -11,10 +11,10 @@ class FileList extends Component {
             </tr>
           </thead>
           <tbody>
-          {this.props.fileHash.map((fHash) => {
+          {this.props.fileHash.map((fHash, index) => {
             return(
               <tr>
-                <td><a target="_blank" href={`https://ipfs.io/ipfs/${fHash}`}> File</a></td>
+          <td><a target="_blank" href={`https://ipfs.io/ipfs/${fHash}`}> File {++index}</a></td>
               </tr>
             )
           })}

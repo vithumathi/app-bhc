@@ -1,5 +1,6 @@
 pragma solidity 0.5.0;
 pragma experimental ABIEncoderV2;
+// Experimental (string[]) - Do not use experimental features on live deployments.
 
 contract Patient{
     string[] fileHash;
