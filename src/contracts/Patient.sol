@@ -1,13 +1,14 @@
 pragma solidity 0.5.0;
+pragma experimental ABIEncoderV2;
 
 contract Patient{
-    string fileHash;
+    string[] fileHash;
 
      function set(string memory _fileHash) public {
-        fileHash = _fileHash;
+        fileHash.push(_fileHash);
     }
 
-    function get() public view returns (string memory){
+    function get() public view returns (string[] memory){
         return fileHash;
     }
 }
