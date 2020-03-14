@@ -25,7 +25,9 @@ class App extends Component {
       const contract = web3.eth.Contract(abi, address);
       this.setState({ contract: contract });
       const fileHash = await contract.methods.get().call();
+      console.log(fileHash);
       this.setState({ fileHash: fileHash });
+      console.log(fileHash.length);
     } else {
       window.alert("Smart contract not deployed to deteced network");
     }
@@ -37,7 +39,7 @@ class App extends Component {
       account: "",
       buffer: null,
       contract: null,
-      fileHash: ""
+      fileHash: []
     };
   }
 
