@@ -14,12 +14,13 @@ class FileList extends Component {
             <tr>
               <td>
                 <p>
-                  <a
+                  {this.props.fileHash ? <a
                     target="_blank"
                     href={`https://ipfs.io/ipfs/${this.props.fileHash}`}
                   >
                     File
-                  </a>
+                  </a> : null}
+                  
                 </p>
               </td>
             </tr>
