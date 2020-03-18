@@ -11,11 +11,6 @@ class Navigation extends Component {
         >
           Health Data
         </a>
-        <ul className="navbar-nav px-3">
-          <li className="nav-item text-nowrap d-none d-sm-none d-sm-block">
-            <small className="text-white">{this.props.account}</small>
-          </li>
-        </ul>
       </nav>
     );
   }

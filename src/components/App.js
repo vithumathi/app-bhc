@@ -1,10 +1,9 @@
 import React, { Component } from "react";
 import "./App.css";
-
-
 import Navigation from "./Navigation";
-
 import Patient from "./PatientComp";
+import Doc from "./Doctor";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 class App extends Component {
   constructor(props) {
@@ -19,10 +18,15 @@ class App extends Component {
 
   render() {
     return (
-      <div>
-        <Navigation />
-        <Patient />
-      </div>
+      <Router>
+        <div>
+          <Navigation />
+          <Switch>
+            <Route path="/patient" component={Patient} />
+            <Doc path="/doctor" component={Doc} />
+          </Switch>
+        </div>
+      </Router>
     );
   }
 }
