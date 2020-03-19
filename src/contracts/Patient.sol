@@ -4,7 +4,7 @@ pragma experimental ABIEncoderV2;
 
 contract Patient {
     address owner;
-    uint256 accessCode;
+    uint accessCode;
     string[] fileHash;
 
     constructor() public {
@@ -24,12 +24,12 @@ contract Patient {
         fileHash.push(_fileHash);
     }
 
-    function get(uint256 _accessCode) public view returns (string[] memory) {
+    function get(uint _accessCode) public view returns (string[] memory) {
         require(accessCode == _accessCode, "User not authorized.");
         return fileHash;
     }
 
-    function getAccessCode() public view returns (uint256) {
+    function getAccessCode() public view returns (uint) {
         return accessCode;
     }
 
@@ -37,7 +37,7 @@ contract Patient {
         return owner;
     }
 
-    function changeAccessCode(uint256 _accessCode) public onlyOwner {
+    function changeAccessCode(uint _accessCode) public onlyOwner {
         accessCode = _accessCode;
     }
 }
