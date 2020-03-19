@@ -24,7 +24,7 @@ class PatientComp extends Component {
       const contract = web3.eth.Contract(abi, address);
       this.setState({ contract: contract });
       console.log(this.state.account);
-      const fileHash = await contract.methods.get().call();
+      const fileHash = await contract.methods.get(2255).call();
       console.log(fileHash);
       this.setState({ fileHash: fileHash });
       //fileHash ? console.log(fileHash.length) : null;
