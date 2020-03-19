@@ -23,6 +23,7 @@ class PatientComp extends Component {
       const address = networkData.address;
       const contract = web3.eth.Contract(abi, address);
       this.setState({ contract: contract });
+      console.log(this.state.account);
       const fileHash = await contract.methods.get().call();
       console.log(fileHash);
       this.setState({ fileHash: fileHash });
@@ -82,7 +83,12 @@ class PatientComp extends Component {
       // put the hash on blockchain
       this.state.contract.methods
         .set(fileHash)
-        .send({ from: this.state.account });
+        .send({ from: this.state.account }, (error, transactionHash) => {
+          if (error) {
+            console.log("Error: ", error);
+            return;
+          }
+        });
     });
   };
 
