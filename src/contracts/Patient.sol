@@ -10,7 +10,7 @@ contract Patient {
     constructor() public {
         // Owner of contract
         owner = msg.sender;
-        accessCode = 2255;
+        accessCode = 26793;
 
     }
 
@@ -29,12 +29,8 @@ contract Patient {
         return fileHash;
     }
 
-    function getAccessCode() public view returns (uint) {
+    function getAccessCode() public onlyOwner view returns (uint) {
         return accessCode;
-    }
-
-    function getOwnerAddress() public view returns (address) {
-        return owner;
     }
 
     function changeAccessCode(uint _accessCode) public onlyOwner {
