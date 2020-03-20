@@ -70,7 +70,7 @@ class Doctor extends Component {
       })
       .catch(err => {
         console.log("Failed with error: " + err);
-        alert('You do not have the permission to view the patients PHR');
+        alert("You do not have the permission to view the patients PHR");
         this.setState({ fileHash: null });
       });
   };
@@ -82,33 +82,45 @@ class Doctor extends Component {
   render() {
     return (
       <div>
-        <form className="mt-5 ml-5" onSubmit={this.onSubmit}>
-          <div className="form-row align-items-center">
-            <div className="col-auto">
-              <label for="accessCode" className="col-sm-2 col-form-label">
-                Access Code
-              </label>
-            </div>
-            <div className="col-auto">
-              <input
-                type="text"
-                className="form-control mb-2"
-                id="inlineFormInput"
-                value={this.state.docAccessCodeIput}
-                onChange={this.handleChange}
-                placeholder="99999"
-              />
-            </div>
-            <div className="col-auto">
-              <input
-                type="submit"
-                value="Submit"
-                className="btn btn-primary mb-2"
-              />
-            </div>
+        <div class=" row mt-3 jumbotron jumbotron-fluid">
+          <div class="container">
+            <h1 class="display-4">Access Health Records</h1>
+            <p class="lead">
+              Please enter the access code to access patients records
+            </p>
           </div>
-        </form>
-        <FileList fileHash={this.state.fileHash} />
+        </div>
+        <div class="container align-middle">
+          <div className="row">
+            <form onSubmit={this.onSubmit}>
+              <div className="form-row align-items-center">
+                <div className="col-auto">
+                  <label className="col-sm-2 col-form-label">Access Code</label>
+                </div>
+                <div className="col-auto">
+                  <input
+                    type="text"
+                    className="form-control mb-2"
+                    id="inlineFormInput"
+                    value={this.state.docAccessCodeIput}
+                    onChange={this.handleChange}
+                    placeholder="99999"
+                  />
+                </div>
+                <div className="col-auto">
+                  <input
+                    type="submit"
+                    value="Submit"
+                    className="btn btn-primary mb-2"
+                  />
+                </div>
+              </div>
+            </form>
+          </div>
+          <div className="row mt-5">
+            <FileList fileHash={this.state.fileHash} />
+          </div>
+        </div>
       </div>
     );
   }
