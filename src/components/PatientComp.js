@@ -69,10 +69,10 @@ class PatientComp extends Component {
 
   // Example: "QmP736EiaZcXmPSigDmbDrQVNkqN1ZrbqDSvfAcvt2RZvf"
   // Example url: https://ipfs.io/ipfs/QmP736EiaZcXmPSigDmbDrQVNkqN1ZrbqDSvfAcvt2RZvf
-  onSubmit = event => {
+  onSubmit =  event => {
     event.preventDefault();
     console.log("Submit");
-    ipfs.add(this.state.buffer, (err, result) => {
+     ipfs.add(this.state.buffer, (err, result) => {
       console.log("ipfs result", result);
       const fileHash = result[0].hash;
       console.log(fileHash);
@@ -81,14 +81,10 @@ class PatientComp extends Component {
         return;
       }
       // put the hash on blockchain
-      this.state.contract.methods
+       this.state.contract.methods
         .set(fileHash)
-        .send({ from: this.state.account }, (error, transactionHash) => {
-          if (error) {
-            console.log("Error: ", error);
-            return;
-          }
-        });
+        .send({ from: this.state.account });
+      
     });
   };
 
